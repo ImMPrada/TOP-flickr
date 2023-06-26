@@ -57,5 +57,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     current_user.add_flickr(auth)
     flash[:notice] = 'Flickr linked'
     redirect_to root_path
+
+  rescue ActiveRecord::RecordInvalid
+    invalid_flickr_linking
+  end
+
+  def invalid_flickr_linking
+    flash[:alert] = 'Flickr account already linked to another user'
+    redirect_to root_path
   end
 end
