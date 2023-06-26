@@ -27,20 +27,26 @@
     </div>
   </div>
 
-  <div class="text-center mt-10 mb-5">
-    <h2>YOUR PHOTOS</h2>
-  </div>
+  <% if @photos %>
+    <div class="text-center mt-10 mb-5">
+      <h2>YOUR PHOTOS</h2>
+    </div>
 
-  <div class="w-1/3 flex-col gap-5 mx-auto">
-    <% @photos.each do |photo| %>
-      <div class="flex-col rounded-xl mb-5">
-        <%= image_tag(
-          photo.source,
-          size: "600",
-          class: "round-2 full-round"
-        ) %>
-        <span class="block my-2"><%= photo.title %></span>
-        <%= link_to "visit original", photo.url, class: "btn-fuchsia py-2" %>
+    <div class="w-1/3 flex-col gap-5 mx-auto">
+      <% @photos.each do |photo| %>
+        <div class="flex-col rounded-xl mb-5">
+          <%= image_tag(
+            photo.source,
+            size: "600",
+            class: "round-2 full-round"
+          ) %>
+          <span class="block my-2"><%= photo.title %></span>
+          <%= link_to "visit original", photo.url, class: "btn-fuchsia py-2" %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="text-center mt-10 mb-5">
+        <h2>CONNECT YOUR FLICKR IF YOU WANT TO SEE YOUR PHOTOS</h2>
       </div>
     <% end %>
   </div>

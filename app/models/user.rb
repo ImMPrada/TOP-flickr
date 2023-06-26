@@ -18,6 +18,7 @@ class User < ApplicationRecord
   def add_flickr(auth)
     self.flickr_uid = auth.uid
     self.flickr_username = auth.info.nickname
+    raise ActiveRecord::RecordInvalid unless valid?
 
     save!
   end
