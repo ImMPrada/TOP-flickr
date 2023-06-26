@@ -23,4 +23,5 @@
   </div>
 <% end %>
 
+<%= button_to "Sign in with #{OmniAuth::Utils.camelize(:flickr)}", omniauth_authorize_path(resource_name, :flickr), data: { turbo: false } %><br />
 <%= render "users/shared/links" %>

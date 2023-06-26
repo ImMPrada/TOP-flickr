@@ -6,4 +6,10 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[flickr]
 
   validates :username, presence: true, uniqueness: true
+  validates :flickr_uid, uniqueness: true, allow_nil: true
+
+
+  def self.find_from_flickr_oauth(auth)
+    find_by(flickr_uid: auth.uid)
+  end
 end
