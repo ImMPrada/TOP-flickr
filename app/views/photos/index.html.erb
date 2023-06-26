@@ -1,0 +1,33 @@
+<div class="min-w-full flex-col gap-10">
+  <div class="flex items-center justify-between">
+    <div>
+      <%= image_tag(
+        @user.avatar_url,
+        size: "80",
+        class: "round-2 full-round"
+      ) %>
+    </div>
+    <div class="flex gap-5">
+      <% if @user.flickr_username %>
+        <span class="block btn-fuchsia"><%= "On Flickr you are #{@user.flickr_username}" %></span>
+      <% else %>
+        <%= button_to(
+          "Connect your Flickr",
+          omniauth_authorize_path(:user, :flickr),
+          class: "btn-blue",
+          data: { turbo: false }
+        )%>
+      <% end %>
+      <%= link_to(
+        "Log out",
+        destroy_user_session_path,
+        class: "btn-blue",
+        data: { turbo: false }
+      ) %>
+    </div>
+  </div>
+
+  <div class="flex-col">
+    photos will be here
+  </div>
+</div>
