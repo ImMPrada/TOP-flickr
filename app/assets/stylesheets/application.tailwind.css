@@ -2,12 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/*
-
 @layer components {
-  .btn-primary {
-    @apply py-2 px-4 bg-blue-200;
+  .btn-blue {
+    @apply py-2 px-4 bg-blue-600 text-blue-100 rounded-xl;
+  }
+  .btn-fuchsia {
+    @apply py-2 px-4 bg-fuchsia-600 text-fuchsia-100 rounded-xl;
+  }
+  .notice {
+    @apply bg-green-100 text-green-600;
+  }
+  .alert {
+    @apply bg-red-100 text-red-600;
   }
 }
-
-*/

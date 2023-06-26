@@ -12,10 +12,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # https://github.com/heartcombo/devise#omniauth
 
   def flickr
+    return add_flickr_to_signed_in_user if user_signed_in?
+
     user = User.find_from_flickr_oauth(auth)
     return no_user_found unless user.present?
 
-
+    sign_out_all_scopes
+    sign_in_and_redirect user, event: :authentication
   end
 
   # GET|POST /resource/auth/twitter
@@ -46,7 +49,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def no_user_found
-    flash[:alert] = "no user found for #{auth.info.nickname} flickr user did you link your profile with your flickr?"
+    flash[:alert] = "no user found for #{auth.info.nickname} flickr user, did you already link your profile with your flickr?"
     redirect_to new_user_session_path
+  end
+
+  def add_flickr_to_signed_in_user
+    current_user.add_flickr(auth)
+    flash[:notice] = 'Flickr linked'
+    redirect_to root_path
   end
 end
