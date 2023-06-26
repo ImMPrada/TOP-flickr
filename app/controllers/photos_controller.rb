@@ -3,7 +3,7 @@ class PhotosController < ApplicationController
 
   def index
     @user = current_user
-    @photos = flickr_user.photos if user_has_flicker_service?
+    @photos = flickr_user.photos if user_has_flickr_service?
   end
 
   private
