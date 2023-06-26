@@ -16,7 +16,7 @@ class PhotosController < ApplicationController
     @flickr_user ||= flickr.users(@user.flickr_username)
   end
 
-  def user_has_flicker_service?
+  def user_has_flickr_service?
     @user.flickr_username.present?
   end
 end
